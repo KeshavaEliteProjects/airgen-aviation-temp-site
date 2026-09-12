@@ -1,0 +1,3 @@
+working on desktop version..
+decreased plane ploygons to low as possible for faster response and
+test on real time deoplying the project in render

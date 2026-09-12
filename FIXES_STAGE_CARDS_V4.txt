@@ -1,0 +1,8 @@
+AirGen Journey — Stage Cards V4
+
+- Fixed desktop Journey panel clipping so all 6 modules are visible for stages 02 and 03.
+- Kept a single page scroll source; the right panel does not create a nested scroll container.
+- Kept all module data intact, including SOP/checklist content such as callouts and cockpit flow patterns.
+- Compact 4-column stage facts preserve the existing Duration / Entry / Outcome / Gate data.
+- Module cards use a fixed compact height and controlled typography for consistent 2x3 alignment.
+- No content was deleted from src/lib/content.ts.

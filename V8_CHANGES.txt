@@ -1,0 +1,17 @@
+AIRGEN V8 CHANGES
+
+1. Journey stage panel boundary hand-off
+- Intermediate stage boundaries still advance exactly one stage.
+- Each new stage panel resets to scrollTop 0.
+- At the bottom of the final (Captain) panel, wheel events are no longer
+  intercepted, so the document/Lenis continues downward normally.
+- At the top of the first (Should I become a pilot?) panel, reverse wheel
+  events are no longer intercepted, so the document can continue upward.
+- Removed the CSS overscroll containment that prevented this outer hand-off.
+- Normal reading inside the panel remains isolated from the Journey controller.
+
+2. Appearance palettes
+- Added 08 Gold & Black.
+- Added 09 Red & Gold.
+- Added palette-specific Three.js aircraft key/rim lighting for both themes.
+- Existing themes and all existing content/animation systems remain intact.

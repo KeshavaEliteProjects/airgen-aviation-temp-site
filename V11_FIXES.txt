@@ -1,0 +1,23 @@
+AIRGEN V11 FIXES
+
+- Preserved all existing AirGen copy/content from src/lib/content.ts.
+- Removed the old visible 3D aircraft / Three.js scene from the application.
+- Replaced the overlapping honeycomb testimonial animation with a calm 2-column video rail using the same six testimonial videos/content.
+- Replaced the old stage/evolution choreography with a structured Journey section using the same STAGES data and copy.
+- Added a curved/parabolic journey media frame wired to /assets/evolve.mp4.
+- Hero is now a full-viewport sky/cloud video wired to /assets/cloud.mp4.
+- Added a branded AIRGEN splash screen using /assets/logo-light.png.
+- Founder navigation still opens the supplied testimonial video viewer.
+- Brand is forced to the requested dark/crimson direction on first paint.
+
+Required media:
+  public/assets/cloud.mp4
+  public/assets/evolve.mp4
+
+V12_BOOT_FIX
+- Removed Lenis initialization from FlightContext to eliminate boot-time scroll-controller failures.
+- Navigation and stage jumps now use native smooth scrolling.
+- Splash dismisses immediately after React mounts and also dismisses on boot errors/rejections.
+- Added a visible React boot-error screen instead of a silent blank page.
+- Fixed hero video stacking so cloud.mp4 is actually visible behind the hero content.
+- Kept original AIRGEN content and testimonial/founder interactions.

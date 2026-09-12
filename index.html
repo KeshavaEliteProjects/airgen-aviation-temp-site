@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="AirGen Aviation — a structured pilot career pathway from aspiration to airline command." />
+    <title>AirGen Aviation — From aspiration to airline command</title>
+    <script>
+      /*
+       * Runs before the first paint so the saved style and hero variants are
+       * already on the document. Doing this in React would show one frame of
+       * the default palette, and a full frame of the default hero.
+       */
+      try {
+        var d = document.documentElement.dataset;
+        d.theme = "crimson";
+        d.hero = "clouds";
+      } catch (e) {
+        /* private mode — fall through to the defaults */
+      }
+    </script>
+    <style>
+      html, body { background:#000; }
+      #airgen-splash { position:fixed; inset:0; z-index:99999; display:grid; place-items:center; background:#000; opacity:1; visibility:visible; transition:opacity .7s ease, visibility .7s ease; }
+      #airgen-splash.is-hidden { opacity:0; visibility:hidden; pointer-events:none; }
+      #airgen-splash .splash-inner { display:flex; flex-direction:column; align-items:center; gap:22px; }
+      #airgen-splash img { width:min(300px,60vw); max-height:110px; height:auto; object-fit:contain; }
+      #airgen-splash .splash-line { width:150px; height:1px; overflow:hidden; background:rgba(255,255,255,.14); position:relative; }
+      #airgen-splash .splash-line::after { content:""; position:absolute; inset:0; background:#bf1e2e; transform:translateX(-100%); animation:airgenSplashLoad 1.15s cubic-bezier(.22,1,.36,1) forwards; }
+      @keyframes airgenSplashLoad { to { transform:translateX(0); } }
+    </style>
+  </head>
+  <body>
+    <div id="airgen-splash" aria-label="Loading AirGen">
+      <div class="splash-inner">
+        <img src="/assets/logo-light.png" alt="AirGen Aviation" />
+        <div class="splash-line" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

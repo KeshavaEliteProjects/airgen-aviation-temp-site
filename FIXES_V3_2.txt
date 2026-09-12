@@ -1,0 +1,7 @@
+AirGen Aviation V3.2 visual cleanup
+
+- Removed 01–05 numeric prefixes from the top navigation.
+- Reduced the hero top padding to eliminate the excessive empty space above the hero content.
+- Removed the global aircraft darkening overlay layers that were sitting over the WebGL aircraft.
+- Reduced hero/section opacity so the aircraft can remain naturally visible in the background.
+- Preserved the V3.1 aircraft camera/flight choreography and the captain evolution design.

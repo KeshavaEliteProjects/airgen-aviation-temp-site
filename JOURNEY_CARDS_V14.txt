@@ -1,0 +1,7 @@
+AIRGEN V14 — Journey THINK / TRAIN / COMMAND cards
+
+Updated only the visual treatment of the journey curve labels.
+- Replaced the loose floating THINK / TRAIN / COMMAND labels with aligned premium cards.
+- Cards follow the parabolic path: THINK and COMMAND at the lower ends, TRAIN at the apex.
+- Preserved the underlying journey content and stage data.
+- Responsive sizing added for mobile.
