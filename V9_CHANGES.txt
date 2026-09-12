@@ -1,7 +1,0 @@
-AirGen V9 changes
-
-1. Training System visual-story captions now use an ink-safe light-theme wash so titles remain readable over bright photography.
-2. Gold & Black and Red & Gold receive explicit visual overrides and retain palette-aware 3D aircraft lighting from V8.
-3. Added three new selectable hero variants: Command Deck, Runway Line, Pilot Manifesto.
-4. Existing hero variants, stage data, Journey transformation and content assets are preserved.
-5. No new external image assets were introduced.

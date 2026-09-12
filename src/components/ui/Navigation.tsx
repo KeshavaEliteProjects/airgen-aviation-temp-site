@@ -1,4 +1,4 @@
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useFlight } from "../../context/FlightContext";
 import { TESTIMONIALS } from "../../lib/content";
@@ -14,6 +14,7 @@ const items = [
 export function Navigation() {
   const [open, setOpen] = useState(false);
   const { setEnquiryModalOpen, setActiveTestimonial, scrollProgress } = useFlight();
+  const [lightTheme, setLightTheme] = useState(() => document.documentElement.dataset.theme === "redline");
   const scrolled = scrollProgress > 0.015;
 
   useEffect(() => {
@@ -24,6 +25,16 @@ export function Navigation() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
+
+
+  const toggleTheme = () => {
+    const nextLight = !lightTheme;
+    const theme = nextLight ? "redline" : "crimson";
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = nextLight ? "light" : "dark";
+    window.localStorage.setItem("airgen-theme", theme);
+    setLightTheme(nextLight);
+  };
 
   // Anchors go through Lenis, otherwise nav jumps feel unrelated to the page.
   const goTo = (id: string) => {
@@ -41,7 +52,7 @@ export function Navigation() {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           aria-label="AirGen Aviation — back to top"
         >
-          <img className="brand-logo" src="/assets/logo-light.png" alt="AirGen Aviation" />
+          <img className="brand-logo" src={lightTheme ? "/assets/logo-dark.png" : "/assets/logo-light.png"} alt="AirGen Aviation" />
         </button>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
@@ -67,6 +78,16 @@ export function Navigation() {
         </nav>
 
         <div className="nav-actions">
+          <button
+            className="theme-switch focus-ring"
+            type="button"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${lightTheme ? "dark" : "light"} theme`}
+            title={`Switch to ${lightTheme ? "dark" : "light"} theme`}
+          >
+            <span className="theme-switch-icon">{lightTheme ? <Moon size={15} /> : <Sun size={15} />}</span>
+            <span className="theme-switch-copy">{lightTheme ? "LIGHT" : "DARK"}<i>↕</i></span>
+          </button>
           <button className="enquire-button focus-ring" onClick={() => setEnquiryModalOpen(true)}>
             Enquire <ArrowUpRight size={15} />
           </button>
@@ -101,6 +122,14 @@ export function Navigation() {
               <ArrowUpRight size={15} />
             </button>
           ))}
+          <button
+            className="mobile-theme-button"
+            onClick={toggleTheme}
+            type="button"
+          >
+            {lightTheme ? <Moon size={15} /> : <Sun size={15} />}
+            <span>Switch to {lightTheme ? "dark" : "light"} mode</span>
+          </button>
           <button
             className="mobile-panel-cta"
             onClick={() => {

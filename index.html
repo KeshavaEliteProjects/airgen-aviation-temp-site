@@ -14,8 +14,10 @@
        */
       try {
         var d = document.documentElement.dataset;
-        d.theme = "crimson";
+        var savedTheme = localStorage.getItem("airgen-theme");
+        d.theme = savedTheme === "redline" ? "redline" : "crimson";
         d.hero = "clouds";
+        document.documentElement.style.colorScheme = d.theme === "redline" ? "light" : "dark";
       } catch (e) {
         /* private mode — fall through to the defaults */
       }

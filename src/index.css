@@ -4700,3 +4700,270 @@ body:has(.modal-shell) {
   .journey-card h3 { font-size: 1.55rem; }
   .journey-module { padding: 14px 0; }
 }
+
+
+/* ==================================================================
+   AIRGEN V16 — DUAL LIGHT / DARK MODE
+   The switch deliberately maps to the site's existing premium
+   Crimson Command (dark) and Redline White (light) palettes.
+   ================================================================== */
+html,
+body,
+#root,
+.app-shell,
+.site-nav,
+.journey-section,
+.testimonials-clean,
+.airgen-hero,
+footer,
+.page-lower {
+  transition: background-color .45s ease, color .45s ease, border-color .45s ease;
+}
+
+.theme-switch {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  min-height:40px;
+  padding:0 12px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:rgb(var(--surface-rgb) / .42);
+  color:var(--text);
+  cursor:pointer;
+  transition:transform .25s ease, border-color .25s ease, background .25s ease, color .25s ease;
+  backdrop-filter:blur(12px);
+}
+.theme-switch:hover {
+  transform:translateY(-1px);
+  border-color:rgb(var(--accent-rgb) / .45);
+  background:rgb(var(--surface-rgb) / .72);
+}
+.theme-switch-icon {
+  display:grid;
+  place-items:center;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  color:var(--accent);
+}
+.theme-switch-copy {
+  font:600 8px var(--mono);
+  letter-spacing:.16em;
+}
+.theme-switch-copy i {
+  margin-left:5px;
+  color:var(--muted);
+  font-style:normal;
+}
+.mobile-theme-button {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  padding:16px 0;
+  border:0;
+  border-bottom:1px solid var(--soft-line);
+  background:transparent;
+  color:var(--text);
+  font:600 10px var(--mono);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.mobile-theme-button svg { color:var(--accent); }
+
+/* Light-mode visual cleanup for the custom AIRGEN redesign. */
+:root[data-theme="redline"] .airgen-hero {
+  background:#dfe4e9;
+}
+:root[data-theme="redline"] .airgen-hero-video {
+  filter:saturate(.82) brightness(1.08) contrast(.98);
+}
+:root[data-theme="redline"] .airgen-hero-shade {
+  background:linear-gradient(90deg, rgba(255,255,255,.88) 0%, rgba(255,255,255,.48) 47%, rgba(255,255,255,.16) 100%), linear-gradient(0deg, rgba(255,255,255,.52), transparent 62%);
+}
+:root[data-theme="redline"] .airgen-hero-vignette {
+  background:radial-gradient(circle at 72% 52%, transparent 0 33%, rgba(255,255,255,.10) 60%, rgba(255,255,255,.42) 100%);
+}
+:root[data-theme="redline"] .airgen-hero-topline,
+:root[data-theme="redline"] .airgen-kicker,
+:root[data-theme="redline"] .airgen-hero-copy > p,
+:root[data-theme="redline"] .airgen-hero-statement,
+:root[data-theme="redline"] .airgen-hero-scroll {
+  color:rgba(18,20,25,.62);
+}
+:root[data-theme="redline"] .airgen-hero h1,
+:root[data-theme="redline"] .airgen-hero-copy > p strong,
+:root[data-theme="redline"] .airgen-hero-statement p {
+  color:#0b0d12;
+}
+:root[data-theme="redline"] .secondary-button {
+  color:#0b0d12;
+  border-color:rgba(18,20,25,.24);
+  background:rgba(255,255,255,.3);
+}
+:root[data-theme="redline"] .secondary-button:hover {
+  border-color:rgba(18,20,25,.5);
+  background:rgba(255,255,255,.65);
+}
+:root[data-theme="redline"] .journey-section {
+  background:#f7f7f4;
+}
+:root[data-theme="redline"] .journey-curve-card,
+:root[data-theme="redline"] .journey-video-wrap,
+:root[data-theme="redline"] .testimonial-tile-clean {
+  background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(245,245,243,.96));
+  border-color:rgba(18,20,25,.13);
+  box-shadow:0 18px 40px rgba(32,35,42,.10), inset 0 1px 0 rgba(255,255,255,.8);
+}
+:root[data-theme="redline"] .journey-curve-card strong,
+:root[data-theme="redline"] .journey-jump,
+:root[data-theme="redline"] .journey-card h3,
+:root[data-theme="redline"] .journey-module strong,
+:root[data-theme="redline"] .testimonials-head-clean h2,
+:root[data-theme="redline"] .testimonial-tile-content strong {
+  color:#121419;
+}
+:root[data-theme="redline"] .journey-summary,
+:root[data-theme="redline"] .journey-facts dd,
+:root[data-theme="redline"] .journey-module p,
+:root[data-theme="redline"] .journey-header > p,
+:root[data-theme="redline"] .testimonials-head-clean > p {
+  color:#626872;
+}
+:root[data-theme="redline"] .journey-facts,
+:root[data-theme="redline"] .journey-modules,
+:root[data-theme="redline"] .journey-modules-head,
+:root[data-theme="redline"] .journey-module,
+:root[data-theme="redline"] .testimonials-clean {
+  border-color:rgba(18,20,25,.10);
+}
+:root[data-theme="redline"] .journey-video-overlay {
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.52));
+}
+:root[data-theme="redline"] .journey-video-copy strong {
+  color:#0b0d12;
+}
+:root[data-theme="redline"] .testimonial-tile-clean > img {
+  filter:brightness(.86) saturate(.75);
+}
+:root[data-theme="redline"] .testimonial-tile-shade {
+  background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.76));
+}
+
+@media (max-width:700px) {
+  .theme-switch { display:none; }
+}
+
+/* ================================================================
+   LIGHT THEME FIX — JOURNEY / TRAINING CARDS
+   Keep the entire card system light in Redline theme, including
+   nested panels, module rows, labels, and hover states.
+   ================================================================ */
+:root[data-theme="redline"] .journey-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f7f7f5 100%);
+  border-color: rgba(18,20,25,.13);
+  box-shadow: 0 20px 48px rgba(28,31,36,.10), inset 0 1px 0 rgba(255,255,255,.95);
+  color: #121419;
+}
+
+:root[data-theme="redline"] .journey-card::before {
+  background: linear-gradient(90deg, transparent, #d7192d, transparent);
+}
+
+:root[data-theme="redline"] .journey-jump {
+  color: #121419;
+  background: linear-gradient(180deg, rgba(18,20,25,.025), rgba(18,20,25,0));
+  border-bottom-color: rgba(18,20,25,.09);
+}
+
+:root[data-theme="redline"] .journey-jump:hover {
+  background: rgba(215,25,45,.045);
+  border-bottom-color: rgba(215,25,45,.18);
+}
+
+:root[data-theme="redline"] .journey-jump span {
+  background: rgba(215,25,45,.055);
+  border-color: rgba(215,25,45,.34);
+}
+
+:root[data-theme="redline"] .journey-jump i {
+  background: rgba(18,20,25,.18);
+}
+
+:root[data-theme="redline"] .journey-jump:hover i {
+  background: #d7192d;
+}
+
+:root[data-theme="redline"] .journey-card-top {
+  color: #6f747d;
+}
+
+:root[data-theme="redline"] .journey-card h3 {
+  color: #121419;
+}
+
+:root[data-theme="redline"] .journey-summary {
+  color: #5d6470;
+}
+
+:root[data-theme="redline"] .journey-facts {
+  border-top-color: rgba(18,20,25,.09);
+}
+
+:root[data-theme="redline"] .journey-facts div {
+  background: rgba(255,255,255,.72);
+  border-color: rgba(18,20,25,.10);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+}
+
+:root[data-theme="redline"] .journey-facts dt {
+  color: #767c86;
+}
+
+:root[data-theme="redline"] .journey-facts dd {
+  color: #343942;
+}
+
+:root[data-theme="redline"] .journey-modules {
+  border-top-color: rgba(18,20,25,.09);
+}
+
+:root[data-theme="redline"] .journey-modules-head {
+  color: #626974;
+}
+
+:root[data-theme="redline"] .journey-module {
+  border-top-color: rgba(18,20,25,.075);
+}
+
+:root[data-theme="redline"] .journey-module > span {
+  color: #8a9099;
+}
+
+:root[data-theme="redline"] .journey-module strong {
+  color: #20242b;
+}
+
+:root[data-theme="redline"] .journey-module p {
+  color: #666d78;
+}
+
+:root[data-theme="redline"] .journey-module:hover {
+  background: rgba(215,25,45,.025);
+}
+
+:root[data-theme="redline"] .journey-ask {
+  color: #20242b;
+  border-top-color: rgba(18,20,25,.09);
+}
+
+:root[data-theme="redline"] .journey-promise {
+  color: #747a84;
+}
+
+:root[data-theme="redline"] .journey-card:hover {
+  border-color: rgba(215,25,45,.28);
+  box-shadow: 0 26px 58px rgba(28,31,36,.13), 0 0 0 1px rgba(215,25,45,.035), inset 0 1px 0 rgba(255,255,255,.95);
+}
