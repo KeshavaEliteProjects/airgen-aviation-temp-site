@@ -1,0 +1,10 @@
+AIRGEN V18 — FOUNDER PROFILE IMAGES
+
+Add these client-provided images to public/assets/:
+
+profile1.png  -> Prudhvi Teja M
+profile2.png  -> Srujan Kumar Vemula
+profile3.png  -> Manas Teja Rachagarla
+
+The Founders section will automatically display the images in the featured founder panel and founder list.
+If an image is temporarily missing, the existing initials fall back automatically.

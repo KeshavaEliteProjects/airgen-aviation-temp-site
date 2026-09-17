@@ -14,6 +14,19 @@ const links = [
 export function Footer() {
   const { scrollToStage } = useFlight();
 
+  const returnToHomeAnd = (id: string, stageIndex?: number) => {
+    if (window.location.hash) {
+      window.location.hash = "";
+      window.setTimeout(() => {
+        if (typeof stageIndex === "number") scrollToStage(stageIndex);
+        else document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 40);
+      return;
+    }
+    if (typeof stageIndex === "number") scrollToStage(stageIndex);
+    else document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div className="footer-shell">
       <footer className="site-footer">
@@ -27,7 +40,7 @@ export function Footer() {
             <div>
               <h3>Journey</h3>
               {STAGES.map((stage, index) => (
-                <button key={stage.id} onClick={() => scrollToStage(index)}>
+                <button key={stage.id} onClick={() => returnToHomeAnd("stages", index)}>
                   {stage.number} {stage.title}
                 </button>
               ))}
@@ -40,6 +53,7 @@ export function Footer() {
                   onClick={() => {
                     const target = document.getElementById(id);
                     if (target) scrollToElement(target, -76);
+                    else returnToHomeAnd(id);
                   }}
                 >
                   {label}

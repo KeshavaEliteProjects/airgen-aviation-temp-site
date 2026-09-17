@@ -1,7 +1,6 @@
 import { ArrowUpRight, Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useFlight } from "../../context/FlightContext";
-import { TESTIMONIALS } from "../../lib/content";
 
 const items = [
   ["about", "About"],
@@ -13,7 +12,7 @@ const items = [
 
 export function Navigation() {
   const [open, setOpen] = useState(false);
-  const { setEnquiryModalOpen, setActiveTestimonial, scrollProgress } = useFlight();
+  const { setEnquiryModalOpen, scrollProgress } = useFlight();
   const [lightTheme, setLightTheme] = useState(() => document.documentElement.dataset.theme === "redline");
   const scrolled = scrollProgress > 0.015;
 
@@ -36,10 +35,23 @@ export function Navigation() {
     setLightTheme(nextLight);
   };
 
-  // Anchors go through Lenis, otherwise nav jumps feel unrelated to the page.
+  // Scroll reliably to anchored sections while accounting for the fixed navbar.
   const goTo = (id: string) => {
-    const target = document.getElementById(id);
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    const scrollTarget = () => {
+      const target = document.getElementById(id);
+      if (!target) return false;
+
+      const navHeight = document.querySelector<HTMLElement>(".site-nav")?.getBoundingClientRect().height ?? 0;
+      const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - navHeight - 18);
+      window.scrollTo({ top, behavior: "smooth" });
+      return true;
+    };
+
+    if (!scrollTarget()) {
+      window.requestAnimationFrame(() => {
+        scrollTarget();
+      });
+    }
     setOpen(false);
   };
 
@@ -61,14 +73,6 @@ export function Navigation() {
               key={id}
               className="nav-link focus-ring"
               onClick={() => {
-                if (id === "founders") {
-                  // Founder navigation opens the existing full-screen video viewer.
-                  // The viewer contains the complete testimonial carousel, so the
-                  // user can move through every supplied clip without leaving the page.
-                  setActiveTestimonial(TESTIMONIALS[0]);
-                  setOpen(false);
-                  return;
-                }
                 goTo(id);
               }}
             >
@@ -108,14 +112,7 @@ export function Navigation() {
           {items.map(([id, label]) => (
             <button
               key={id}
-              onClick={() => {
-                if (id === "founders") {
-                  setActiveTestimonial(TESTIMONIALS[0]);
-                  setOpen(false);
-                  return;
-                }
-                goTo(id);
-              }}
+              onClick={() => goTo(id)}
               className="mobile-panel-link"
             >
               <span>{label}</span>
