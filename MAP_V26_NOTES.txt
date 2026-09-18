@@ -1,0 +1,6 @@
+V26 map update
+- Replaced the hand-drawn fake continent blobs with a real world geographic outline.
+- Added matching light/dark world-map assets under public/assets/maps/.
+- Kept animated AirGen route lines and destination markers as a transparent overlay.
+- Destination points are projected from approximate city coordinates to match the real world map.
+- No user-supplied PNG is required; SVG keeps it crisp at desktop and mobile sizes.

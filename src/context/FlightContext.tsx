@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useContext, useMemo, useState } from "react";
 import { STAGES } from "../lib/content";
-import type { FounderProfile, Testimonial } from "../types/aviation";
+import type { CoursePathway, FounderProfile, Testimonial } from "../types/aviation";
 
 interface FlightContextType {
   scrollProgress: number;
@@ -15,6 +15,8 @@ interface FlightContextType {
   setActiveFounder: (founder: FounderProfile | null) => void;
   activeTestimonial: Testimonial | null;
   setActiveTestimonial: (testimonial: Testimonial | null) => void;
+  activeCourse: CoursePathway | null;
+  setActiveCourse: (course: CoursePathway | null) => void;
 }
 
 const FlightContext = createContext<FlightContextType>({
@@ -30,6 +32,8 @@ const FlightContext = createContext<FlightContextType>({
   setActiveFounder: () => undefined,
   activeTestimonial: null,
   setActiveTestimonial: () => undefined,
+  activeCourse: null,
+  setActiveCourse: () => undefined,
 });
 
 export function FlightProvider({ children }: { children: React.ReactNode }) {
@@ -40,6 +44,7 @@ export function FlightProvider({ children }: { children: React.ReactNode }) {
   );
   const [activeFounder, setActiveFounder] = useState<FounderProfile | null>(null);
   const [activeTestimonial, setActiveTestimonial] = useState<Testimonial | null>(null);
+  const [activeCourse, setActiveCourse] = useState<CoursePathway | null>(null);
 
   const scrollToProgress = useCallback((target: number) => {
     const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
@@ -49,8 +54,13 @@ export function FlightProvider({ children }: { children: React.ReactNode }) {
   const scrollToStage = useCallback(
     (stageIndex: number) => {
       const index = Math.min(STAGES.length - 1, Math.max(0, stageIndex));
-      const stage = document.getElementById(`stage-${STAGES[index].id}`);
-      if (stage) stage.scrollIntoView({ behavior: "smooth", block: "start" });
+      const section = document.getElementById("stages");
+      if (!section) return;
+      const navHeight = document.querySelector<HTMLElement>(".site-nav")?.getBoundingClientRect().height ?? 0;
+      const scrollable = Math.max(1, section.offsetHeight - window.innerHeight);
+      const ratio = STAGES.length === 1 ? 0 : index / (STAGES.length - 1);
+      const top = Math.max(0, section.offsetTop + ratio * scrollable - navHeight - 10);
+      window.scrollTo({ top, behavior: "smooth" });
     },
     [],
   );
@@ -69,6 +79,8 @@ export function FlightProvider({ children }: { children: React.ReactNode }) {
       setActiveFounder,
       activeTestimonial,
       setActiveTestimonial,
+      activeCourse,
+      setActiveCourse,
     }),
     [
       scrollProgress,
@@ -78,6 +90,7 @@ export function FlightProvider({ children }: { children: React.ReactNode }) {
       selectedStageForEnquiry,
       activeFounder,
       activeTestimonial,
+      activeCourse,
     ],
   );
 

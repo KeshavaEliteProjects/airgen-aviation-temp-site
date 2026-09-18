@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { FlightProvider, useFlight } from "./context/FlightContext";
 import { Navigation } from "./components/ui/Navigation";
 import { Hero } from "./components/ui/Hero";
@@ -9,23 +9,9 @@ import { Footer } from "./components/ui/Footer";
 import { EnquiryModal } from "./components/ui/EnquiryModal";
 import { FoundersModal } from "./components/ui/FoundersModal";
 import { TestimonialModal } from "./components/ui/TestimonialModal";
-import { CoursePage } from "./components/ui/CoursePage";
-
-function useHashRoute() {
-  const [hash, setHash] = useState(() => window.location.hash.replace(/^#/, ""));
-  useEffect(() => {
-    const onHash = () => setHash(window.location.hash.replace(/^#/, ""));
-    window.addEventListener("hashchange", onHash);
-    return () => window.removeEventListener("hashchange", onHash);
-  }, []);
-  return hash;
-}
 
 function Experience() {
   const { setScrollProgress } = useFlight();
-  const route = useHashRoute();
-  const courseMatch = route.match(/^course\/(.+)$/);
-
   useEffect(() => {
     let frame = 0;
     const measure = () => {
@@ -43,22 +29,6 @@ function Experience() {
       if (frame !== 0) cancelAnimationFrame(frame);
     };
   }, [setScrollProgress]);
-
-  const goHome = () => {
-    if (window.location.hash) window.location.hash = "";
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  if (courseMatch) {
-    return (
-      <div className="app-shell">
-        <Navigation />
-        <CoursePage courseId={courseMatch[1]} onBack={goHome} />
-        <Footer />
-        <EnquiryModal />
-      </div>
-    );
-  }
 
   return (
     <div className="app-shell">

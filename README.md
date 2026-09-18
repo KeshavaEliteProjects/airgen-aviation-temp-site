@@ -207,3 +207,23 @@ Search the codebase for `TODO(client)`. Currently outstanding:
   cluster settles.
 - GLB preloading, frustum culling, `loading="lazy"` on below-fold imagery, and
   `preload="none"` on tile videos so nothing downloads until hovered.
+
+
+### V22 changes
+- Journey reduced to the documented three stages: THINK, TRAIN, COMMAND.
+- `evolve.mp4` remains inside a fixed journey video frame.
+- Founders redesigned as a cover-video profile experience; add `public/assets/founder1.mp4`, `founder2.mp4`, `founder3.mp4`.
+- Founder profiles expect `profile1.png`, `profile2.png`, `profile3.png`.
+- Animated global training network map added before the three founder rows.
+- Courses now open a focused modal instead of navigating to a separate detail page.
+
+
+## V22 — FINAL CLIENT DIRECTION
+
+The active journey follows the documented three-stage AirGen model: **THINK → TRAIN → COMMAND**. The desktop journey uses a stable sticky video frame and a vertical flight-path rail. The founder section uses autoplay cover-video slots with portrait overlays and an animated global training map before the three founder rows. Courses are presented as concise pathway cards and open a focused modal with the complete pathway details.
+
+Client media slots:
+- `/public/assets/cloud.mp4` — hero
+- `/public/assets/evolve.mp4` — journey film
+- `/public/assets/founder1.mp4`, `/public/assets/founder2.mp4`, `/public/assets/founder3.mp4` — founder cover videos
+- `/public/assets/profile1.png`, `/public/assets/profile2.png`, `/public/assets/profile3.png` — founder portraits

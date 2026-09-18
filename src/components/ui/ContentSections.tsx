@@ -1,9 +1,11 @@
 import { ArrowUpRight, Check, Globe2 } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useFlight } from "../../context/FlightContext";
 import { ABOUT, COURSES, DESTINATIONS, INCLUDED_FEATURES, SITE, VISUAL_STORY } from "../../lib/content";
 import { useInView } from "../../lib/hooks";
 import { Founders } from "./Founders";
+import { GlobalFlightMap } from "./FounderFlightMap";
+import { CourseModal } from "./CourseModal";
 
 function Reveal({
   children,
@@ -35,10 +37,7 @@ function Reveal({
 
 export function ContentSections() {
   const { setEnquiryModalOpen } = useFlight();
-
-  const openCourse = (id: string) => {
-    window.location.hash = `course/${id}`;
-  };
+  const [selectedCourse, setSelectedCourse] = useState<typeof COURSES[number] | null>(null);
 
   return (
     <>
@@ -96,17 +95,20 @@ export function ContentSections() {
           <h2>Ground school here.<br /><strong>Flight hours anywhere.</strong></h2>
           <p>Cadets complete ground school with AirGen, then build hours with a partner organisation abroad.</p>
         </Reveal>
-        <Reveal className="location-grid" delay={80}>
-          {DESTINATIONS.map((destination) => (
-            <div key={destination.id} className="location-card">
-              <Globe2 size={16} />
-              <span>{destination.regulator}</span>
-              <strong>{destination.city}</strong>
-              <small>{destination.country}</small>
-              <em>{destination.aircraft}</em>
-            </div>
-          ))}
-        </Reveal>
+        <div className="location-right">
+          <GlobalFlightMap />
+          <Reveal className="location-grid" delay={80}>
+            {DESTINATIONS.map((destination) => (
+              <div key={destination.id} className="location-card">
+                <Globe2 size={16} />
+                <span>{destination.regulator}</span>
+                <strong>{destination.city}</strong>
+                <small>{destination.country}</small>
+                <em>{destination.aircraft}</em>
+              </div>
+            ))}
+          </Reveal>
+        </div>
       </section>
 
       <section id="courses" className="course-section-v18">
@@ -116,12 +118,26 @@ export function ContentSections() {
               <div className="eyebrow"><span /> Regulatory pathways</div>
               <h2>Choose the pathway.<br /><strong>Keep the AirGen standard.</strong></h2>
             </div>
-            <p>Explore the DGCA, FAA and EASA pathways and open a dedicated view for each course track.</p>
+            <p>Choose a pathway at a glance. Select a card to reveal the complete route, coverage and AirGen support without crowding the landing page.</p>
           </Reveal>
 
           <div className="course-v18-grid">
             {COURSES.map((course, index) => (
-              <Reveal key={course.id} className="course-v18-card" delay={index * 70}>
+              <Reveal
+                key={course.id}
+                className="course-v18-card"
+                delay={index * 70}
+                role="button"
+                tabIndex={0}
+                aria-label={`Open full ${course.regulator} pathway details`}
+                onClick={() => setSelectedCourse(course)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setSelectedCourse(course);
+                  }
+                }}
+              >
                 <div className="course-v18-card-top">
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   <b>{course.regulator}</b>
@@ -130,13 +146,16 @@ export function ContentSections() {
                 <div className="course-v18-card-main">
                   <span>{course.tagline}</span>
                   <h3>{course.regulator} pathway</h3>
-                  <p>{course.description}</p>
+                  <div className="course-v22-quick">
+                    <span>{course.region}</span>
+                    <span>{course.highlights.length} core areas</span>
+                  </div>
                   <ul>
-                    {course.highlights.slice(0, 4).map((item) => <li key={item}><Check size={13} /> {item}</li>)}
+                    {course.highlights.slice(0, 3).map((item) => <li key={item}><Check size={13} /> {item}</li>)}
                   </ul>
                 </div>
-                <button className="course-v18-open focus-ring" onClick={() => openCourse(course.id)}>
-                  Explore pathway <ArrowUpRight size={15} />
+                <button className="course-v18-open focus-ring" onClick={(event) => { event.stopPropagation(); setSelectedCourse(course); }}>
+                  View full pathway <ArrowUpRight size={15} />
                 </button>
               </Reveal>
             ))}
@@ -150,6 +169,8 @@ export function ContentSections() {
           </Reveal>
         </div>
       </section>
+
+      {selectedCourse && <CourseModal course={selectedCourse} onClose={() => setSelectedCourse(null)} />}
 
       <section id="contact" className="contact-section">
         <Reveal>
