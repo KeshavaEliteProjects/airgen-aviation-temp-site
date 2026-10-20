@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" preserveAspectRatio="xMidYMid slice"><style>.l{fill:#ffb000;animation:b 1.6s ease-in-out infinite}@keyframes b{50%{opacity:.25}}</style>
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1f3a"/><stop offset="1" stop-color="#2f4f7a"/></linearGradient></defs><rect width="800" height="260" fill="url(#g)"/>
+<circle cx="400" cy="110" r="46" fill="#ffb000" fill-opacity=".25"/><polygon points="370,110 430,110 790,260 10,260" fill="#17263a"/>
+<g fill="#fff"><polygon points="397,114 403,114 404,126 396,126"/><polygon points="395,138 405,138 407,158 393,158"/><polygon points="392,176 408,176 412,206 388,206"/><polygon points="386,230 414,230 422,260 378,260"/></g>
+<g><circle class="l" cx="372" cy="112" r="3"/><circle class="l" cx="428" cy="112" r="3"/><circle class="l" cx="330" cy="150" r="4"/><circle class="l" cx="470" cy="150" r="4"/><circle class="l" cx="270" cy="200" r="5"/><circle class="l" cx="530" cy="200" r="5"/><circle class="l" cx="190" cy="250" r="6"/><circle class="l" cx="610" cy="250" r="6"/></g></svg>
