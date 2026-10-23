@@ -1,0 +1,35 @@
+{
+  "items": [
+    {
+      "id": "welcome",
+      "date": "2026-10-23",
+      "title": "The Airgen news page is live",
+      "category": "Updates",
+      "summary": "Announcements, events and guides from Airgen Aviation will be posted here. Check back often, or follow the scrolling strip on the home page.",
+      "pinned": true
+    },
+    {
+      "id": "sample-video",
+      "date": "2026-10-21",
+      "title": "Sample video: replace this with your own YouTube video",
+      "category": "Videos",
+      "summary": "This is a dummy video item to show how video news looks. Add or edit videos from the admin panel at /#admin.",
+      "type": "video",
+      "videoId": "aqz-KE-bpKQ"
+    },
+    {
+      "id": "demo-call",
+      "date": "2026-10-22",
+      "title": "Book a 15-minute demo call with a pilot mentor",
+      "category": "Admissions",
+      "summary": "Talk through your pathway, medical and budget with a mentor before you decide. Use the Enquire button at the top of any page."
+    },
+    {
+      "id": "dgca-guide",
+      "date": "2026-10-20",
+      "title": "Explore the DGCA ground class pathway",
+      "category": "DGCA",
+      "summary": "See how the ATPL ground class, RTR (A) preparation and licence steps fit together in one plan."
+    }
+  ]
+}
