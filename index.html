@@ -115,45 +115,6 @@
       );
     }
 
-    /* --------------------------
-       Hero aircraft
-       Kept bright and legible -- including the livery on the fuselage -- by
-       never parking it underneath the copy. Narrow screens stack it below
-       the text; from 1024px up it moves into its own right-hand column.
-       Rendered from the uploaded GLB as a transparent WebP so GitHub Pages
-       never needs to load a 3D model or WebGL runtime.
-    -------------------------- */
-    .aircraft-background {
-      position: absolute;
-      z-index: 0;
-      left: 50%;
-      top: 80%;
-      width: min(1040px, 156vw, 112vh);
-      max-width: none;
-      pointer-events: none;
-      user-select: none;
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(.95);
-      filter: saturate(1.12) contrast(1.04)
-              drop-shadow(0 30px 36px rgba(15, 23, 42, .12));
-      transition: opacity 1.6s ease-out, transform 1.6s ease-out;
-    }
-
-    .ready .aircraft-background {
-      opacity: .72;
-      transform: translate(-50%, -50%) scale(1);
-      animation: aircraftAmbient 16s ease-in-out 1.6s infinite;
-    }
-
-    @keyframes aircraftAmbient {
-      0%, 100% {
-        transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1) rotate(0deg);
-      }
-      50% {
-        transform: translate(-50%, -50%) translate3d(16px, -12px, 0) scale(1.02) rotate(-.4deg);
-      }
-    }
-
     /* Sits between the aircraft and the copy: whites out the sky behind the
        text without touching the half of the hero the aircraft occupies. */
     .hero-veil {
@@ -770,28 +731,10 @@
        so its livery never runs into the text. */
     @media (min-width: 1024px) {
       .headline { font-size: clamp(40px, 5.2vw, 74px); }
-
-      .aircraft-background {
-        top: 76%;
-        width: min(1200px, 90vw, 112vh);
-      }
-
-      .ready .aircraft-background { opacity: .92; }
-    }
-
-    @media (max-width: 1023px) and (min-width: 641px) {
-      .aircraft-background {
-        top: 78%;
-        width: min(1100px, 138vw, 112vh);
-      }
-
-      .ready .aircraft-background { opacity: .78; }
     }
 
     @media (max-width: 640px) {
       .hero { padding: 6vh 20px 32px; }
-      .aircraft-background { top: 81%; width: 164vw; }
-      .ready .aircraft-background { opacity: .68; }
 
       .cta { margin-top: 26px; }
       .cta-label { padding: 15px 20px 15px 24px; }
@@ -869,8 +812,6 @@
   <div class="page" id="page">
     <main>
       <section class="hero" id="hero">
-        <!-- Aircraft sits behind the hero copy as a background layer -->
-        <img class="aircraft-background" src="assets/airgen-aircraft-side.webp" alt="" aria-hidden="true" />
         <canvas class="hero-clouds" id="skyNear" aria-hidden="true"></canvas>
         <div class="hero-veil" aria-hidden="true"></div>
 
